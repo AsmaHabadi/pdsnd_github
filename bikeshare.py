@@ -235,12 +235,25 @@ def show_first_five_rows(df):
 
 #---------------------------------------------------------------------------------------------
 
+
+def get_user_input():
+    """
+    Gets user input for city, month, and day filters.
+
+    Returns:
+        tuple: A tuple containing the city, month, and day.
+    """
+    city, month, day = get_filters()
+    return city, month, day
+
+
+#---------------------------------------------------------------------------------->
 def run_analysis():
     """
     Handles the main loop for the bike share data analysis.
     """
     while True:
-        city, month, day = get_filters()
+        city, month, day = get_user_input()
         df = load_data(city, month, day)
 
         print('-' * 80)
@@ -255,6 +268,7 @@ def run_analysis():
             restart = input("Invalid input. Please enter 'yes' or 'no': ").lower()
 
         if restart != 'yes':
+		break
             
 
 
