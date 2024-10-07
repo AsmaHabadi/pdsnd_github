@@ -29,6 +29,7 @@ def load_data(city, month=None, day=None):
     # Filter by day if applicable
     if day:
         df = df[df['day_of_week'] == day.title()]
+    
 
     return df
 
@@ -237,11 +238,17 @@ def show_first_five_rows(df):
 #---------------------------------------------------------------------------------------------
 
 def main():
+
     while True:
+
         city, month, day = get_filters()
         df = load_data(city, month, day)
 
         print('-' * 80)
+
+        #Display a summary of the data loaded for initial inspection
+        print(f"\nData for {city} loaded successfully. Number of rows: {df.shape[0]}")
+        
         print(f"\nAnalyzing data for {city.title()}...\n")
 
         popular_times_of_travel(df)
