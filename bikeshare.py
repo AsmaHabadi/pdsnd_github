@@ -233,6 +233,30 @@ def show_first_five_rows(df):
             print('*' * 40)
             show_rows = input("Invalid input. Please enter 'yes' or 'no':").lower()
 
+#---------------------------------------------------------------------------------------------
+
+def run_analysis():
+    """
+    Handles the main loop for the bike share data analysis.
+    """
+    while True:
+        city, month, day = get_filters()
+        df = load_data(city, month, day)
+
+        print('-' * 80)
+        print(f"\nData for {city} loaded successfully. Number of rows: {df.shape[0]}")
+
+        # Optionally ask if the user wants to restart or exit
+	restart = input("\nWould you like to restart? (yes or no): ").lower()
+
+        while restart not in ['yes', 'no']:
+            print("")
+            print('*' * 40)
+            restart = input("Invalid input. Please enter 'yes' or 'no': ").lower()
+
+        if restart != 'yes':
+            
+
 
 #---------------------------------------------------------------------------------------------
 
@@ -249,16 +273,7 @@ def main():
         trip_duration(df)
         user_info(df)
         show_first_five_rows(df)
-        
-        restart = input("\nWould you like to restart? (yes or no): ").lower()
-
-        while restart not in ['yes', 'no']:
-            print("")
-            print('*' * 40)
-            restart = input("Invalid input. Please enter 'yes' or 'no': ").lower()
-
-        if restart != 'yes':
-            break
+	run_analysis()
 
 #---------------------------------------------------------------------------------------------
 
